@@ -77,11 +77,6 @@ var loadBlockEvents = function(){
     
 }
 
-
-
-
-
-
 loadBlockEvents();
 displayBlockEvents();
 updateTime();
