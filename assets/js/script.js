@@ -1,5 +1,29 @@
 var blockEventsList = [];
 
+
+var updateTime = function(){
+    //check due date for each task
+    for(var i = 7; i < 18; i++){
+        if (i < moment().format("H")){
+            var tempClass = "past";
+        }
+        else if (i > moment().format("H")){
+            var tempClass = "future";
+        }
+        else{
+            var tempClass = "present";
+        }
+        
+        var index = i -7;
+        $("#"+index).addClass(tempClass);
+}
+
+}
+    
+   
+    
+   
+    
 //format the currentDay and display it on the page
 var displayCurrentDay = function(){
     var tempText = moment().format("dddd, MMMM Do");
@@ -27,7 +51,7 @@ var displayBlockEvents = function(){
             var tempText = "";
         }
         
-        tempTextarea = $("<textarea>").addClass("col past").attr("id",tempId).text(tempText);
+        tempTextarea = $("<textarea>").addClass("col").attr("id",tempId).text(tempText);
         
 
         tempButtonDiv = $("<div>")
@@ -41,7 +65,7 @@ var displayBlockEvents = function(){
     
 }
 
-
+//load saved events from localStorage
 var loadBlockEvents = function(){
     var tempList = JSON.parse(localStorage.getItem("events"));
 
@@ -53,17 +77,17 @@ var loadBlockEvents = function(){
 }
 
 
-var loadPage = function(){
-    loadBlockEvents();
-    displayCurrentDay();
-    displayBlockEvents();
+
+
+
+
+loadBlockEvents();
+displayCurrentDay();
+displayBlockEvents();
+updateTime();
+setInterval(updateTime,6000);
   
-
-}
-
-loadPage();
-
-
+//save the current task on click
 $(".saveBtn").on("click",function(){
     var tempText = $(this).siblings("textarea").val();
     var tempId = $(this).siblings("textarea").attr("id");

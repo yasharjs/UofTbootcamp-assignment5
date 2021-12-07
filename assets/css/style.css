@@ -76,6 +76,6 @@ textarea:focus{
 
 .saveBtn:hover {
   font-size: 30px;
-  background-color: #77dd77;
+  background-color:#ff6961;
   transition: all .2.5s ease-in-out;
 }
